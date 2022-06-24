@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# output if signal: SIGTERM
+
+trap "echo 'I am invincible!!!'" SIGTERM
+while [[ 'true' ]]
+do
+	echo 'To infinity and beyond'
+	sleep 2
+done
+
+

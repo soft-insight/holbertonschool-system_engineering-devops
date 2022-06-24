@@ -1,0 +1,6 @@
+#!/bin/bash
+MESSAGE='mensaje'
+read 'mensaje'
+
+echo $MESSAGE
+

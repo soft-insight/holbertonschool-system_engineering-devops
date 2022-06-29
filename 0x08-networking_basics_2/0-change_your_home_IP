@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# change IP's
+
+cp /etc/hosts /etc/hosts.new
+sed -i 's/127.0.0.1/127.0.0.2/g' /etc/hosts.new
+sed -i '/localhost$/a 8.8.8.8\t\tfacebook.com' /etc/hosts.new
+cp -f /etc/hosts.new /etc/hosts

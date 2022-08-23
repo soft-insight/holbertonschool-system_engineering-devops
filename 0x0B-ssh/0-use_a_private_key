@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# bash that uses sshe to connect to ubuntu@4721-web-01
+# using private key ~/.ssh/school
+
+ssh -i ~/.ssh/school ubuntu@52.87.253.129

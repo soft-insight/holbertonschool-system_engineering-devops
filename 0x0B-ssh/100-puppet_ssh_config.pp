@@ -1,12 +1,12 @@
 # ssh config w/Puppet
 
-file { 'Passwd auth No':
+file_line { 'Passwd auth No':
   ensure => present,
   path   => '/etc/ssh/ssh_config',
   line   => 'PasswordAuthentication no',
 }
 
-file { 'Identity file':
+file_line { 'Identity file':
   ensure => present,
   path   => '/etc/ssh/ssh_config',
   line   => 'IdentityFile ~/.ssh/school',

@@ -1,34 +1,22 @@
 #!/usr/bin/python3
 """
-From REST API: https://jsonplaceholder.typicode.com/
-returns info about TODO list.
+Uses https://jsonplaceholder.typicode.com along with an employee ID to
+return information about the employee's todo list progress
 """
 
 import requests
-import sys
+from sys import argv
 
-if __name__ == "__main__":
-
-    user_id = sys.argv[1]
-    urlApi = 'https://jsonplaceholder.typicode.com'
-    user = requests.get(urlApi + f'/users/{user_id}').json()
-    # print(user)
-    user_tasks = requests.get(urlApi + '/todos',
-                              params={'userId': user_id}).json()
-
-    num_user_task = len(user_tasks)
-    EMPLOYEE_NAME = user.get('name')
-
-    num_task_completed = 0
-    for i in range(num_user_task):
-        if user_tasks[i]['completed'] is True:
-            num_task_completed += 1
-
-    print(f'Employee {EMPLOYEE_NAME} is done' +
-          f' with tasks({num_task_completed}/{num_user_task}):')
-
-    num_task_completed = 0
-    for i in range(len(user_tasks)):
-        if user_tasks[i]['completed']:
-            print('\t', user_tasks[i]['title'])
-            num_task_completed += 1
+if __name__ == '__main__':
+    userId = argv[1]
+    user = requests.get("https://jsonplaceholder.typicode.com/users/{}".
+                        format(userId), verify=False).json()
+    todo = requests.get("https://jsonplaceholder.typicode.com/todos?userId={}".
+                        format(userId), verify=False).json()
+    completed_tasks = []
+    for task in todo:
+        if task.get('completed') is True:
+            completed_tasks.append(task.get('title'))
+    print("Employee {} is done with tasks({}/{}):".
+          format(user.get('name'), len(completed_tasks), len(todo)))
+    print("\n".join("\t {}".format(task) for task in completed_tasks))

@@ -11,19 +11,19 @@ if __name__ == "__main__":
     user_id = sys.argv[1]
     urlApi = 'https://jsonplaceholder.typicode.com'
     user = requests.get(urlApi + f'/users/{user_id}').json()
-    #print(user)
+    # print(user)
     user_tasks = requests.get(urlApi + '/todos',
                               params={'userId': user_id}).json()
 
     num_user_task = len(user_tasks)
-    user_name = user.get('name')
+    EMPLOYEE_NAME = user.get('name')
 
     num_task_completed = 0
     for i in range(num_user_task):
         if user_tasks[i]['completed'] is True:
             num_task_completed += 1
 
-    print(f'Employee {user_name} is done' +
+    print(f'Employee {EMPLOYEE_NAME} is done' +
           f' with tasks({num_task_completed}/{num_user_task}):')
 
     num_task_completed = 0

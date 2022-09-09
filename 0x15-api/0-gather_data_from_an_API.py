@@ -8,8 +8,8 @@ import sys
 if __name__ == "__main__":
 
     user_id = sys.argv[1]
-    urlApi = 'https://jsonplaceholder.typicode.com/users/user_id'
-    user = requests.get(urlApi).json()
+    urlApi = 'https://jsonplaceholder.typicode.com'
+    user = requests.get(urlApi + f'/users/{user_id}').json()
 
     user_tasks = requests.get('https://jsonplaceholder.typicode.com/todos',
                               params={'userId': user_id}).json()
@@ -22,8 +22,8 @@ if __name__ == "__main__":
         if user_tasks[i]['completed']:
             num_task_completed += 1
 
-    print('Employee {} is done with tasks({}/{}):'.format(
-          user_name, num_task_completed, num_user_task))
+    print(f'Employee {user_name} is done' +
+          f' with tasks({num_task_completed}/{num_user_task}):')
 
     num_task_completed = 0
     for i in range(len(user_tasks)):

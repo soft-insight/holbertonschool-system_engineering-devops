@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-From REST API: "https://jsonplaceholder.typicode.com/"
+From REST API: https://jsonplaceholder.typicode.com/
 returns info about TODO list.
 """
 

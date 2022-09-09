@@ -11,8 +11,8 @@ if __name__ == "__main__":
     user_id = sys.argv[1]
     urlApi = 'https://jsonplaceholder.typicode.com'
     user = requests.get(urlApi + f'/users/{user_id}').json()
-
-    user_tasks = requests.get('https://jsonplaceholder.typicode.com/todos',
+    #print(user)
+    user_tasks = requests.get(urlApi + '/todos',
                               params={'userId': user_id}).json()
 
     num_user_task = len(user_tasks)
@@ -20,7 +20,7 @@ if __name__ == "__main__":
 
     num_task_completed = 0
     for i in range(num_user_task):
-        if user_tasks[i]['completed']:
+        if user_tasks[i]['completed'] is True:
             num_task_completed += 1
 
     print(f'Employee {user_name} is done' +
